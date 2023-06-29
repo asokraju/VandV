@@ -20,6 +20,21 @@ SBERT has been shown to significantly outperform the original BERT model on vari
 
 In this project, we are using SBERT to compute sentence embeddings for requirements and then computing the cosine similarity between these embeddings to get a similarity score.
 
+# Code Overview
+
+The code includes the following classes and functions:
+
+- `TFSTLayer` Class: This class defines a custom Keras layer that applies a Transformer model to generate sentence embeddings. It uses a pre-trained model from the Transformers library, which is specified by the model_name parameter. The call method computes the embeddings, and the mean_pooling method applies mean pooling to the token embeddings.
+
+- `tf_sentence_transformer` Function: This function creates a Keras Model for sentence embeddings. It takes as input the name of the pre-trained Transformer model and the maximum sequence length for tokenization. It returns a Keras Model that outputs sentence embeddings.
+
+- `SBERTCosineSimilarityModel` Class: This class defines a Keras Model for cosine similarity. It uses the tf_sentence_transformer function to create a model that generates sentence embeddings. The call method computes similarity scores between pairs of sentences by first generating embeddings for each sentence and then computing the cosine similarity between these embeddings.
+
+- `tokenize_pairs` Function: This function tokenizes pairs of sentences. It uses a pre-trained BERT tokenizer from the Transformers library to tokenize the sentences. It returns a dictionary that contains the tokenized inputs for each sentence.
+
+Main Section: The main section of the script demonstrates how to use the above classes and functions. It first specifies the name of the pre-trained Transformer model and the maximum sequence length for tokenization. It then tokenizes a pair of sentences and computes the similarity score between them using the SBERTCosineSimilarityModel class.
+
+The code is designed to be modular, with each class and function performing a specific task. This makes it easy to modify or extend the code to suit different requirements or to incorporate different Transformer models.
 
 ## Dependencies
 
@@ -49,14 +64,3 @@ In this project, we are using SBERT to compute sentence embeddings for requireme
     ```bash
     python main.py
     ```
-
-# Code Overview
-
-The code includes the following classes and functions:
-
-- `TFSTLayer`: A Keras layer that applies a Transformer model to generate sentence embeddings.
-- `tf_sentence_transformer`: A function that creates a Keras Model for sentence embeddings.
-- `SBERTCosineSimilarityModel`: A Keras Model for cosine similarity.
-    tokenize_pairs: A function that tokenizes pairs of sentences.
-
-The main section of the script demonstrates how to use these classes and functions to compute similarity scores between pairs of sentences.
