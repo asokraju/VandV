@@ -1,2 +1,62 @@
-# VandV
- Verification and Validation
+# Verification and Validation (VandV) Project
+
+This repository contains the code for computing similarity scores between requirements. It is a part of the Verification and Validation project.
+
+## Description
+
+This project is part of a Verification and Validation (V&V) process where the goal is to compute similarity scores between different requirements. The requirements could be in the form of sentences or short paragraphs. The similarity score is a measure of how similar two requirements are in terms of their semantic meaning. This can be useful in various scenarios such as identifying duplicate requirements, clustering similar requirements together, or finding related requirements in a large dataset.
+
+To compute the similarity scores, we are using a method based on Transformer models, specifically Sentence-BERT (SBERT). SBERT is a modification of the pre-trained BERT network that allows us to derive semantically meaningful sentence embeddings efficiently. These embeddings can then be compared using cosine similarity to provide a measure of how similar two sentences are.
+
+The code is implemented in Python and uses the TensorFlow library for building and training the models, and the Transformers library for accessing pre-trained Transformer models and tokenizers.
+
+## Sentence-BERT (SBERT)
+
+Sentence-BERT (SBERT) is a modification of the BERT model which is specifically optimized for deriving sentence embeddings. In the original BERT model, sentence embeddings were typically derived by taking the output of the first token (the [`CLS`] token) from the last layer of the model. However, it was found that these embeddings were not very effective for semantic textual similarity tasks.
+
+SBERT addresses this issue by adding a pooling operation to the output of BERT to create sentence embeddings. The pooling operation can be mean, max, or CLS token pooling. These sentence embeddings can then be directly used to compute semantic similarity between sentences using cosine similarity.
+
+SBERT has been shown to significantly outperform the original BERT model on various sentence-level tasks like semantic textual similarity, paraphrase identification, and natural language inference. It is also much faster and more efficient than BERT for these tasks because it allows sentence embeddings to be computed in one pass, rather than requiring pairwise comparison of sentences.
+
+In this project, we are using SBERT to compute sentence embeddings for requirements and then computing the cosine similarity between these embeddings to get a similarity score.
+
+
+## Dependencies
+
+- Python 3.7+
+- TensorFlow 2.3+
+- Transformers 4.0+
+
+## Files
+
+- `main.py`: This is the main Python script that contains the code for the models and functions.
+
+## Usage
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/asokraju/VandV.git
+    ```
+
+
+2.  Install the dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. Run the script:
+    ```bash
+    python main.py
+    ```
+
+# Code Overview
+
+The code includes the following classes and functions:
+
+- `TFSTLayer`: A Keras layer that applies a Transformer model to generate sentence embeddings.
+- `tf_sentence_transformer`: A function that creates a Keras Model for sentence embeddings.
+- `SBERTCosineSimilarityModel`: A Keras Model for cosine similarity.
+    tokenize_pairs: A function that tokenizes pairs of sentences.
+
+The main section of the script demonstrates how to use these classes and functions to compute similarity scores between pairs of sentences.
