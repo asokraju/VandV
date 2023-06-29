@@ -19,19 +19,31 @@ class TFSTLayer(tf.keras.layers.Layer):
         self.tf_model = TFAutoModel.from_pretrained(model_name)
 
     def call(self, input_ids, attention_mask, token_type_ids, normalize=True):
+        # Compute the model output
         output = self.tf_model(input_ids, attention_mask, token_type_ids)
-        token_embeddings = output.last_hidden_state
-        embedding = self.mean_pooling(token_embeddings, attention_mask)
+
+        # Compute the token embeddings
+        token_embeddings = output.last_hidden_state  # shape=(B, max_seq_length, n_embd), dtype=float32
+
+        # Mean Pooling
+        embedding = self.mean_pooling(token_embeddings, attention_mask)  # shape=(B, n_embd), dtype=float32
+
         if normalize:
-            embedding, _ = tf.linalg.normalize(embedding, 2, axis=1)
+            embedding, _ = tf.linalg.normalize(embedding, 2, axis=1)  # shape=(B, n_embd), dtype=float32
+
         return embedding
 
     def mean_pooling(self, token_embeddings, attention_mask):
-        attention_mask = tf.cast(tf.expand_dims(attention_mask, axis=-1), dtype=tf.float32)
-        token_embeddings = token_embeddings * attention_mask
-        sum_embeddings = tf.reduce_sum(token_embeddings, axis=1)
-        token_count = tf.math.count_nonzero(token_embeddings, axis=1, dtype=tf.float32)
-        mean_embeddings = sum_embeddings / token_count
+        attention_mask = tf.expand_dims(attention_mask, axis=-1)  # shape=(B, max_seq_length, 1), dtype=int32
+        attention_mask = tf.broadcast_to(attention_mask, tf.shape(token_embeddings))  # shape=(B, max_seq_length, n_embd), dtype=int32
+        attention_mask = tf.cast(attention_mask, dtype=tf.float32)  # shape=(B, max_seq_length, n_embd), dtype=float32
+        token_embeddings = token_embeddings * attention_mask  # shape=(B, max_seq_length, n_embd), dtype=float32
+
+        # Taking mean over all the tokens (max_seq_length axis)
+        mean_embeddings = tf.reduce_sum(token_embeddings, axis=1)  # shape=(B, n_embd), dtype=float32
+        # Alternatively, you can replace the `mean_pooling` method with `tf.keras.layers.GlobalAveragePooling1D`:
+        # mean_pooling = tf.keras.layers.GlobalAveragePooling1D()
+        # mean_embeddings = mean_pooling(token_embeddings)
         return mean_embeddings
 
 def tf_sentence_transformer(model_name:str, max_seq_length) -> tf.keras.Model:
