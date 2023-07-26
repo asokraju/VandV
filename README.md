@@ -24,9 +24,9 @@ In this project, we utilize USE to compute sentence embeddings for the objective
 
 The code includes the following classes and functions:
 
-- `USEEmbeddingLayer Class: This class defines a custom Keras layer that applies the Universal Sentence Encoder model to generate sentence embeddings. It uses a pre-trained model from the TensorFlow Hub, specified by the model_url parameter. The call method computes the embeddings for given inputs.
+- `USEEmbeddingLayer` Class: This class defines a custom Keras layer that applies the Universal Sentence Encoder model to generate sentence embeddings. It uses a pre-trained model from the TensorFlow Hub, specified by the model_url parameter. The call method computes the embeddings for given inputs.
 
-- `USECosineSimilarityModel Class: This class defines a Keras Model for cosine similarity. It uses the USEEmbeddingLayer to create a model that generates sentence embeddings. The call method computes similarity scores between pairs of sentences by first generating embeddings for each sentence and then computing the cosine similarity between these embeddings.
+- `USECosineSimilarityModel` Class: This class defines a Keras Model for cosine similarity. It uses the USEEmbeddingLayer to create a model that generates sentence embeddings. The call method computes similarity scores between pairs of sentences by first generating embeddings for each sentence and then computing the cosine similarity between these embeddings.
 
 - `Main Section`: The main section of the script demonstrates how to use the above classes. It first specifies the URL of the pre-trained Universal Sentence Encoder model. It then defines pairs of sentences for which to compute similarity scores. The USECosineSimilarityModel is instantiated with the specified model URL, compiled with an optimizer, and then trained using the provided pairs of sentences and their corresponding target similarity scores.
 
