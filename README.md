@@ -1,10 +1,10 @@
 # Verification and Validation (VandV) Project
 
-This repository contains the code for computing similarity scores between requirements. It is a part of the Verification and Validation project.
+This repository contains the code for computing similarity scores for system goals. It is a part of the Verification and Validation project.
 
 ## Description
 
-This project is part of a Verification and Validation (V&V) process where the goal is to compute similarity scores between different requirements. The requirements could be in the form of sentences or short paragraphs. The similarity score is a measure of how similar two requirements are in terms of their semantic meaning. This can be useful in various scenarios such as identifying duplicate requirements, clustering similar requirements together, or finding related requirements in a large dataset.
+This project is part of a Verification and Validation (V&V) process where the goal is to compute similarity scores between different system goals. The goals could be in the form of sentences or short paragraphs. The similarity score is a measure of how similar two goals are in terms of their semantic meaning. This can be useful in various scenarios such as identifying duplicate goals, clustering similar requirements together, or finding related goals in a large dataset.
 
 To compute the similarity scores, we are using a method based on Transformer models, specifically Sentence-BERT (SBERT). SBERT is a modification of the pre-trained BERT network that allows us to derive semantically meaningful sentence embeddings efficiently. These embeddings can then be compared using cosine similarity to provide a measure of how similar two sentences are.
 
@@ -18,7 +18,7 @@ SBERT addresses this issue by adding a pooling operation to the output of BERT t
 
 SBERT has been shown to significantly outperform the original BERT model on various sentence-level tasks like semantic textual similarity, paraphrase identification, and natural language inference. It is also much faster and more efficient than BERT for these tasks because it allows sentence embeddings to be computed in one pass, rather than requiring pairwise comparison of sentences.
 
-In this project, we are using SBERT to compute sentence embeddings for requirements and then computing the cosine similarity between these embeddings to get a similarity score.
+In this project, we are using SBERT to compute sentence embeddings for goals and then computing the cosine similarity between these embeddings to get a similarity score.
 
 # Code Overview
 
@@ -34,7 +34,7 @@ The code includes the following classes and functions:
 
 Main Section: The main section of the script demonstrates how to use the above classes and functions. It first specifies the name of the pre-trained Transformer model and the maximum sequence length for tokenization. It then tokenizes a pair of sentences and computes the similarity score between them using the SBERTCosineSimilarityModel class.
 
-The code is designed to be modular, with each class and function performing a specific task. This makes it easy to modify or extend the code to suit different requirements or to incorporate different Transformer models.
+The code is designed to be modular, with each class and function performing a specific task. This makes it easy to modify or extend the code to suit different goals or to incorporate different Transformer models.
 
 ## Dependencies
 
