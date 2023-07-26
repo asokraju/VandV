@@ -4,7 +4,7 @@ This repository contains the code for computing similarity scores for system goa
 
 ## Description
 
-This project is part of a Verification and Validation (V&V) process where the goal is to compute similarity scores between different system goals. The goals could be in the form of sentences or short paragraphs. The similarity score is a measure of how similar two goals are in terms of their semantic meaning. This can be useful in various scenarios such as identifying duplicate goals, clustering similar requirements together, or finding related goals in a large dataset.
+This project is part of a Verification and Validation (V&V) process where the goal is to compute similarity scores between different system goals. The goals could be in the form of sentences or short paragraphs. The similarity score is a measure of how similar two goals are in terms of their semantic meaning. This can be useful in various scenarios such as identifying duplicate goals, clustering similar goals together, or finding related goals in a large dataset.
 
 To compute the similarity scores, we are using a method based on Transformer models, specifically Sentence-BERT (SBERT). SBERT is a modification of the pre-trained BERT network that allows us to derive semantically meaningful sentence embeddings efficiently. These embeddings can then be compared using cosine similarity to provide a measure of how similar two sentences are.
 
