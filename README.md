@@ -1,24 +1,24 @@
 # Verification and Validation (VandV) Project
 
-This repository contains the code for computing similarity scores for system goals. It is a part of the Verification and Validation project.
+This repository includes the code required to evaluate similarity scores among system objectives. The endeavor forms a component of the Verification and Validation process.
 
 ## Description
 
-This project is part of a Verification and Validation (V&V) process where the goal is to compute similarity scores between different system goals. The goals could be in the form of sentences or short paragraphs. The similarity score is a measure of how similar two goals are in terms of their semantic meaning. This can be useful in various scenarios such as identifying duplicate goals, clustering similar goals together, or finding related goals in a large dataset.
+The initiative is an integral part of a Verification and Validation (V&V) scheme where the objective is to evaluate semantic similarity scores between distinct system goals. The goals might take the form of sentences or short paragraphs. The similarity score signifies how analogous two goals are with regards to their semantic meaning. It proves useful in various scenarios like detecting duplicate goals, clustering analogous goals, or pinpointing related goals within an extensive dataset.
 
-To compute the similarity scores, we are using a method based on Transformer models, specifically Sentence-BERT (SBERT). SBERT is a modification of the pre-trained BERT network that allows us to derive semantically meaningful sentence embeddings efficiently. These embeddings can then be compared using cosine similarity to provide a measure of how similar two sentences are.
+For similarity score calculation, we utilize a method centered around Transformer models, specifically Universal Sentence Encoder (USE). USE is a model developed by Google that generates semantically meaningful sentence embeddings efficiently. These embeddings can subsequently be compared employing cosine similarity to provide a measure of semantic similarity between two sentences.
 
-The code is implemented in Python and uses the TensorFlow library for building and training the models, and the Transformers library for accessing pre-trained Transformer models and tokenizers.
+The code is implemented in Python, employing TensorFlow for model building and training, and the Transformers library for accessing pre-trained Transformer models and tokenizers.
 
-## Sentence-BERT (SBERT)
+## Universal Sentence Encoder (USE)
 
-Sentence-BERT (SBERT) is a modification of the BERT model which is specifically optimized for deriving sentence embeddings. In the original BERT model, sentence embeddings were typically derived by taking the output of the first token (the [`CLS`] token) from the last layer of the model. However, it was found that these embeddings were not very effective for semantic textual similarity tasks.
+The Universal Sentence Encoder (USE) is a model developed by Google that provides high-quality sentence embeddings. Unlike the original BERT model where sentence embeddings are usually derived by taking the output of the first token (the [`CLS`] token) from the final model layer, USE is optimized for generating meaningful and efficient sentence embeddings.
 
-SBERT addresses this issue by adding a pooling operation to the output of BERT to create sentence embeddings. The pooling operation can be mean, max, or CLS token pooling. These sentence embeddings can then be directly used to compute semantic similarity between sentences using cosine similarity.
+USE tackles this issue by applying a transformation on the output of the Transformer to generate sentence embeddings. The resulting sentence embeddings can be utilized directly to compute semantic similarity between sentences using cosine similarity.
 
-SBERT has been shown to significantly outperform the original BERT model on various sentence-level tasks like semantic textual similarity, paraphrase identification, and natural language inference. It is also much faster and more efficient than BERT for these tasks because it allows sentence embeddings to be computed in one pass, rather than requiring pairwise comparison of sentences.
+USE has demonstrated substantial performance on various sentence-level tasks such as semantic textual similarity, paraphrase identification, and natural language inference. It is much faster and more efficient than BERT for these tasks as it allows the calculation of sentence embeddings in a single pass, avoiding the need for pairwise comparison of sentences.
 
-In this project, we are using SBERT to compute sentence embeddings for goals and then computing the cosine similarity between these embeddings to get a similarity score.
+In this project, we utilize USE to compute sentence embeddings for the objectives, and then compute the cosine similarity between these embeddings to derive a similarity score.
 
 # Code Overview
 
