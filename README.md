@@ -24,17 +24,13 @@ In this project, we utilize USE to compute sentence embeddings for the objective
 
 The code includes the following classes and functions:
 
-- `TFSTLayer` Class: This class defines a custom Keras layer that applies a Transformer model to generate sentence embeddings. It uses a pre-trained model from the Transformers library, which is specified by the model_name parameter. The call method computes the embeddings, and the mean_pooling method applies mean pooling to the token embeddings.
+- `USEEmbeddingLayer Class: This class defines a custom Keras layer that applies the Universal Sentence Encoder model to generate sentence embeddings. It uses a pre-trained model from the TensorFlow Hub, specified by the model_url parameter. The call method computes the embeddings for given inputs.
 
-- `tf_sentence_transformer` Function: This function creates a Keras Model for sentence embeddings. It takes as input the name of the pre-trained Transformer model and the maximum sequence length for tokenization. It returns a Keras Model that outputs sentence embeddings.
+- `USECosineSimilarityModel Class: This class defines a Keras Model for cosine similarity. It uses the USEEmbeddingLayer to create a model that generates sentence embeddings. The call method computes similarity scores between pairs of sentences by first generating embeddings for each sentence and then computing the cosine similarity between these embeddings.
 
-- `SBERTCosineSimilarityModel` Class: This class defines a Keras Model for cosine similarity. It uses the tf_sentence_transformer function to create a model that generates sentence embeddings. The call method computes similarity scores between pairs of sentences by first generating embeddings for each sentence and then computing the cosine similarity between these embeddings.
+- `Main Section`: The main section of the script demonstrates how to use the above classes. It first specifies the URL of the pre-trained Universal Sentence Encoder model. It then defines pairs of sentences for which to compute similarity scores. The USECosineSimilarityModel is instantiated with the specified model URL, compiled with an optimizer, and then trained using the provided pairs of sentences and their corresponding target similarity scores.
 
-- `tokenize_pairs` Function: This function tokenizes pairs of sentences. It uses a pre-trained BERT tokenizer from the Transformers library to tokenize the sentences. It returns a dictionary that contains the tokenized inputs for each sentence.
-
-Main Section: The main section of the script demonstrates how to use the above classes and functions. It first specifies the name of the pre-trained Transformer model and the maximum sequence length for tokenization. It then tokenizes a pair of sentences and computes the similarity score between them using the SBERTCosineSimilarityModel class.
-
-The code is designed to be modular, with each class and function performing a specific task. This makes it easy to modify or extend the code to suit different goals or to incorporate different Transformer models.
+This code is designed to be modular, with each class performing a specific task. This makes it easy to modify or extend the code to suit different goals or to incorporate different sentence encoding models. For example, you could replace the Universal Sentence Encoder with another sentence encoder by creating a new embedding layer class that applies the alternative sentence encoder.
 
 ## Dependencies
 
